@@ -158,7 +158,7 @@
         <div class="container">
             <a class="navbar-brand fw-bold text-primary" href="{% url 'material_list' %}">
                 <i class="fas fa-graduation-cap me-2"></i>
-                LearnHub
+                ElearningKu
             </a>
             <div class="navbar-nav ms-auto">
                 <span class="nav-link text-muted">
@@ -222,7 +222,7 @@
                 </div>
 
                 <!-- Quiz Form -->
-                <form method="post" id="quizForm">
+                <form method="post" id="quizForm" action="{% url 'submit_quiz' material.id %}">
                     {% csrf_token %}
                     
                     {% for question in questions %}
@@ -232,7 +232,7 @@
                             <div class="d-flex align-items-start mb-4">
                                 <div class="question-number">{{ forloop.counter }}</div>
                                 <div class="flex-grow-1">
-                                    <h5 class="question-text mb-0">{{ question.text }}</h5>
+                                    <h5 class="question-text mb-0">{{ question.question_text }}</h5>
                                 </div>
                             </div>
 
@@ -246,7 +246,7 @@
                                            value="{{ choice.id }}"
                                            required>
                                     <label for="choice_{{ question.id }}_{{ choice.id }}">
-                                        {{ choice.text }}
+                                        {{ choice.choice_text }}
                                     </label>
                                 </div>
                                 {% endfor %}

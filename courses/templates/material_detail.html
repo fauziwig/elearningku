@@ -100,10 +100,10 @@
         }
         
         .reading-time {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            background: linear-gradient(130deg, var(--accent-color), var(--secondary-color));
             border-radius: 15px;
             padding: 1rem;
-            border-left: 4px solid #f59e0b;
+            border-left: 4px solid var(--primary-color);
         }
     </style>
 </head>
@@ -113,7 +113,7 @@
         <div class="container">
             <a class="navbar-brand fw-bold text-primary" href="{% url 'material_list' %}">
                 <i class="fas fa-graduation-cap me-2"></i>
-                LearnHub
+                ElearningKu
             </a>
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="{% url 'material_list' %}">
@@ -140,7 +140,7 @@
                 </div>
                 <div class="col-md-4 text-md-end">
                     <div class="reading-time">
-                        <i class="fas fa-clock text-warning me-2"></i>
+                        <i class="fas fa-clock" style="color: black;"></i>
                         <strong>Est. 15-20 min read</strong>
                     </div>
                 </div>
