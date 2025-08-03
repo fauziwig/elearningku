@@ -1,7 +1,7 @@
-# E-Learning Platform
+# E-Learning Platform | ElearningKu
 
 ## Overview
-The E-Learning Platform is a web application designed to facilitate online learning. It provides features for managing courses, quizzes, and user interactions, making it an ideal solution for educational institutions and independent educators.
+ElearningKu is a web application designed to facilitate online learning. It provides features for managing courses, quizzes, and user interactions, making it an ideal solution for educational institutions and independent educators.
 
 ## Features
 - Course management
