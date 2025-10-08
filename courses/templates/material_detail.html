@@ -169,7 +169,13 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="material-content">
-                            {{ material.content|safe }}
+                
+                        {% if material.image %}
+                            <img src="{{ material.image.url }}" alt="{{ material.title }}" class="img-fluid rounded mb-4 shadow-sm" style="height: 400px; object-fit: cover;">
+                        {% endif %}
+
+                        {{ material.content|safe }}
+
                         </div>
 
                         <!-- Navigation Buttons -->
@@ -198,9 +204,11 @@
                                 </p>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
+
         </div>
 
         <!-- Quick Actions -->

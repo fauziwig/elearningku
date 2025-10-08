@@ -155,8 +155,7 @@
                             {% endif %}
                         {% elif choice.is_correct %}
                             <div class="choice correct">
-                                <i class="fas fa-check-circle text-success me-2"></i>
-                                {{ choice.choice_text }} <span class="badge bg-success ms-2">Correct Answer</span>
+                                <i class="fas fa-check-circle text-success me-2"></i>{{ choice.choice_text }} 
                             </div>
                         {% else %}
                             <div class="choice">

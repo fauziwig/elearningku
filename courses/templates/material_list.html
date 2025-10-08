@@ -118,19 +118,25 @@
                         </div>
                         
                         <h5 class="card-title fw-bold text-dark mb-3">{{ material.title }}</h5>
-                        
-                        {% if material.content %}
+
+
+                        {% if material.content %}  
                         <p class="card-text text-muted mb-4">{{ material.content|truncatewords:20 }}</p>
                         {% else %}
                         <p class="card-text text-muted mb-4">{{ material.content|truncatewords:15|striptags }}</p>
                         {% endif %}
+
                         
+                        
+
+
                         <div class="mt-auto">
                             <a href="{% url 'material_detail' material.id %}" class="btn btn-primary-custom">
                                 <i class="fas fa-play me-2"></i>
                                 Start Learning
                             </a>
                         </div>
+                        
                     </div>
                     
                     <div class="card-footer bg-transparent border-0 text-center">

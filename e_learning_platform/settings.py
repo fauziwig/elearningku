@@ -117,8 +117,28 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
+# folder static untuk menyimpan file file sifatnya 'tetap' di server, misal gambar untuk website, ikon websitenya, dll.
 
 STATIC_URL = '/static/'
+
+# ✅ BEST PRACTICE 1:
+# Tentukan lokasi folder 'static' yang baru saja Anda buat.
+# Django akan mencari file statis di sini.
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+# ✅ BEST PRACTICE 2:
+# Tentukan lokasi di mana semua file statis akan dikumpulkan untuk production.
+# Jangan gunakan nama yang sama dengan STATICFILES_DIRS (misalnya, 'staticfiles').
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# ✅ TAMBAHKAN DUA BARIS DI BAWAH INI UNTUK FILE UPLOAD
+# URL untuk mengakses file yang diunggah pengguna
+MEDIA_URL = '/media/'
+
+# Direktori di server tempat file yang diunggah akan disimpan
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
