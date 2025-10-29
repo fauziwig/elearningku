@@ -1,0 +1,44 @@
+:root {
+    --dark-bg: #121212;
+    --dark-surface: #1e1e1e;
+    --dark-text: #ffffff;
+    --dark-border: #333;
+}
+
+body.dark-mode {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+.dark-mode .navbar {
+    background-color: var(--dark-surface) !important;
+    border-bottom: 1px solid var(--dark-border);
+}
+
+.dark-mode .navbar-brand,
+.dark-mode .nav-link {
+    color: var(--dark-text) !important;
+}
+
+.dark-mode .hero-section {
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+}
+
+.dark-mode .material-card,
+.dark-mode .card {
+    background-color: var(--dark-surface);
+    border-color: var(--dark-border);
+}
+
+.dark-mode .text-dark {
+    color: var(--dark-text) !important;
+}
+
+.dark-mode .text-muted {
+    color: #a0a0a0 !important;
+}
+
+.dark-mode footer {
+    background-color: var(--dark-surface) !important;
+    border-top: 1px solid var(--dark-border);
+}
