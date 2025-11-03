@@ -1,24 +1,25 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .forms import CustomUserCreationForm
 
 def register(request):
     if request.user.is_authenticated:
         return redirect('profile')
     
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
             messages.success(request, f'Selamat datang {user.username}! Akun Anda berhasil dibuat.')
             return redirect('material_list')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     return render(request, 'users/register.html', {'form': form})
 
 @login_required
