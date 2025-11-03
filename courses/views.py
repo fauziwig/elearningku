@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Material, Question, Choice
+from django.contrib.auth.decorators import login_required
+from .models import Material, Question, Choice, QuizAttempt, QuizAnswer
 
 def course_list(request):
     material_list = Material.objects.all()
@@ -15,27 +16,49 @@ def quiz_detail(request, course_id):
     questions = material.questions.all()
     return render(request, 'quiz.html', {'material': material, 'questions': questions})
 
+@login_required
 def submit_quiz(request, course_id):
     if request.method == 'POST':
-        # Collect user answers
         material = get_object_or_404(Material, id=course_id)
         questions = material.questions.all()
         user_answers = {}
         score = 0
         total = questions.count()
+        
+        quiz_attempt = QuizAttempt.objects.create(
+            user=request.user,
+            material=material,
+            score=0,
+            total_questions=total,
+            passed=False
+        )
+        
         for question in questions:
             selected_choice_id = request.POST.get(f'question_{question.id}')
             if selected_choice_id:
                 user_answers[question.id] = int(selected_choice_id)
                 try:
                     choice = Choice.objects.get(id=selected_choice_id, question=question)
-                    if choice.is_correct:
+                    is_correct = choice.is_correct
+                    if is_correct:
                         score += 1
+                    
+                    QuizAnswer.objects.create(
+                        attempt=quiz_attempt,
+                        question=question,
+                        selected_choice=choice,
+                        is_correct=is_correct
+                    )
                 except Choice.DoesNotExist:
                     pass
-        passed = score >= (total // 2)  # Example: pass if at least half correct
-        # Store user_answers in session or pass via GET/POST if needed
+        
+        passed = score >= (total // 2)
+        quiz_attempt.score = score
+        quiz_attempt.passed = passed
+        quiz_attempt.save()
+        
         request.session['quiz_result'] = {
+            'attempt_id': quiz_attempt.id,
             'user_answers': user_answers,
             'score': score,
             'total': total,
